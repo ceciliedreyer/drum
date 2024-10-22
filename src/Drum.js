@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import MIDISounds from "midi-sounds-react";
 import "./Drum.css";
 
 export default function Drum() {
@@ -11,6 +12,12 @@ export default function Drum() {
    * if the toggle is = piano I return:
    *   once I hit a button I call the API and get the piano sounds
    */
+  const midiSounds = useRef(null);
+
+  function handleNote(event) {
+    event.preventDefault();
+    midiSounds.current.playDrumsNow([2]);
+  }
 
   return (
     <div className="Drum">
@@ -18,7 +25,10 @@ export default function Drum() {
         <div className="pad-bank">
           <div className="row">
             <div clasName="col">
-              <button className="btn btn-primary shadow-sm p-3 m-1 rounded drum-pad ">
+              <button
+                className="btn btn-primary shadow-sm p-3 m-1 rounded drum-pad"
+                onClick={handleNote}
+              >
                 Q
               </button>
 
@@ -82,6 +92,7 @@ export default function Drum() {
           </div>
         </div>
       </div>
+      <MIDISounds ref={midiSounds} appElementName="root" />
     </div>
   );
 }
