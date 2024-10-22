@@ -1,0 +1,82 @@
+html,
+body {
+  height: 100%;
+}
+
+.Drum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.wrapper {
+  border: solid 1px #e3fdff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.Drum .pad-bank {
+  padding: 20px 30px;
+  width: 300px;
+}
+
+.Drum .controls {
+  width: 300px;
+}
+
+.drum-pad {
+  font-family: "Russo One";
+  height: 70px;
+  width: 70px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding-top: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.power-switch {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 0.5;
+  letter-spacing: 1.5px;
+  text-align: center;
+  margin-top: 15px;
+}
+.form-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 60%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.bank-switch {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 0.5;
+  letter-spacing: 1.5px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.volume-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 60%;
+  margin: 0 auto;
+}
