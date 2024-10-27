@@ -16,17 +16,19 @@ body {
   justify-content: center;
   align-items: center;
   height: auto;
-  max-width: 600px;
   margin: 0 auto;
-}
-
-.Drum .pad-bank {
   padding: 20px 30px;
-  width: 300px;
+  width: 600px;
 }
 
 .Drum .controls {
   width: 300px;
+}
+
+.Drum .pad-grid {
+  display: grid;
+  grid-template-columns: repeat (3, 1fr);
+  gap: 10px;
 }
 
 .drum-pad {
