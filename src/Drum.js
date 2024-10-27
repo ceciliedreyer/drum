@@ -1,22 +1,27 @@
-import React from "react";
+import { React, useState } from "react";
+import { soundBank1, soundBank2 } from "./Sounds";
 import "./Drum.css";
 
 export default function Drum() {
-  /**
-   * find a music library
-   * The toggle is set to drums
-   * if the toggle is = drums I return:
-   *   Once I hit a button a pre-set sound is called
-   * Once the toggle switches I update the state to piano
-   */
+  const [Power, setPower] = useState(true);
+  const [Bank, setBank] = useState(true); // true for soundBank1
+  const [display, setDisplay] = useState("");
+  const [volume, setVolume] = useState(0.5);
 
   return (
     <div className="Drum">
       <div className="wrapper">
         <div clasName="pad-grid">
-          <button className="btn btn-primary shadow-sm p-3 m-1 rounded drum-pad">
-            Q
-          </button>
+          {sounds.map(function (sounds) {
+            return (
+              <button
+                className="btn btn-primary shadow-sm p-3 m-1 rounded drum-pad"
+                key={sounds.key}
+              >
+                {sounds.key}
+              </button>
+            );
+          })}
         </div>
         <div className="controls">
           <h1 className="power-switch">POWER</h1>

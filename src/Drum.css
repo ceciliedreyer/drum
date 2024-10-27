@@ -22,7 +22,7 @@ body {
 }
 
 .Drum .controls {
-  width: 300px;
+  width: 100%;
 }
 
 .Drum .pad-grid {
@@ -34,7 +34,7 @@ body {
 .drum-pad {
   font-family: "Russo One";
   height: 70px;
-  width: 70px;
+  width: 100px;
   margin-right: 10px;
   margin-top: 10px;
   padding-top: 35px;
