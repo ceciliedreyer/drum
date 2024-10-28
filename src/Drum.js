@@ -1,9 +1,9 @@
-import { React, useState } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import { soundBank1, soundBank2 } from "./Sounds";
 import "./Drum.css";
 
 export default function Drum() {
-  const [power, setPower] = useState(true);
+  const [power, setPower] = useState(false);
   const [bank, setBank] = useState(true); // true for soundBank1
   const [display, setDisplay] = useState("");
   const [volume, setVolume] = useState(0.5);
@@ -37,17 +37,34 @@ export default function Drum() {
 
   function handleVolume(volume) {
     setVolume(volume.target.value);
-    setDisplay(`volume: ${Math.round(volume.target.value)}`);
+    setDisplay(`volume: ${volume.target.value * 100}`);
   }
 
-  function startDrum(sound, label) {
-    if (power === true) {
-      const audio = new Audio(sound);
-      audio.volume = volume;
-      audio.play();
-      setDisplay(label);
+  const startDrum = useCallback(
+    (sound, label) => {
+      if (power === true) {
+        const audio = new Audio(sound);
+        audio.volume = volume;
+        audio.play();
+        setDisplay(label);
+      }
+    },
+    [power, volume]
+  );
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      const key = event.key.toUpperCase();
+      const sound = currentSounds.find((s) => s.key === key);
+      if (sound) {
+        startDrum(sound.sound, sound.label);
+      }
     }
-  }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentSounds, startDrum]);
 
   return (
     <div className="Drum">
@@ -86,6 +103,10 @@ export default function Drum() {
             type="range"
             className="form-range volume-slider"
             id="customRange1"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
             onChange={handleVolume}
           />
           <h1 className="bank-switch">BANK</h1>
